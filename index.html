@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>A Special Message for You</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+
+<div class="iphone-container">
+    <div class="notch"></div>
+    <div class="screen">
+        <div class="status-bar">
+            <div class="time" id="status-bar-time">9:41</div>
+            <div class="icons">
+                <i class="fa-solid fa-signal"></i>
+                <i class="fa-solid fa-wifi"></i>
+                <i class="fa-solid fa-battery-full"></i>
+            </div>
+        </div>
+
+        <div id="lock-screen" class="app-screen active">
+            <div class="lock-screen-content">
+                <div id="lock-screen-time" class="lock-time">9:41</div>
+                <div id="lock-screen-date" class="lock-date">Monday, 25</div>
+                
+                <div class="notification">
+                    <div class="app-icon-small messages"></div>
+                    <div class="notification-content">
+                        <strong>Messages</strong>
+                        <p>You have a new message!</p>
+                    </div>
+                </div>
+
+                <div class="music-widget-small">
+                     <img src="assets/img/album-art.jpg" alt="Album Art">
+                     <div class="music-info-small">
+                         <strong>Nama Lagu Anda</strong>
+                         <p>Nama Artis</p>
+                     </div>
+                     <i class="fa-solid fa-play"></i>
+                </div>
+            </div>
+            <div class="unlock-prompt">Swipe up to unlock</div>
+        </div>
+
+        <div id="home-screen" class="app-screen">
+            <div class="widgets-container">
+                <div class="widget notes">
+                    <span>Notes</span>
+                    <p><strong>OPEN MESSAGE</strong></p>
+                    <p class="note-subtitle">Gallery</p>
+                </div>
+                <div class="widget calendar">
+                    <span>MONDAY</span>
+                    <p class="calendar-date">25</p>
+                    <span>No more events today</span>
+                </div>
+            </div>
+            <div class="app-grid">
+                <div class="app-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f9/FaceTime_logo.svg/2048px-FaceTime_logo.svg.png"><p>FaceTime</p></div>
+                <div class="app-icon"><div class="cal-icon"><span>MON</span><strong>25</strong></div><p>Calendar</p></div>
+                <div class="app-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Photos_app_logo.svg/2048px-Photos_app_logo.svg.png"><p>Photos</p></div>
+                <div class="app-icon"><img src="https://i.pinimg.com/originals/08/1a/a6/081aa6e7330a133f73f7535adc468971.png"><p>Camera</p></div>
+                <div id="messages-app-icon" class="app-icon"><span class="badge">1</span><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/IMessage_logo.svg/2048px-IMessage_logo.svg.png"><p>Messages</p></div>
+                <div class="app-icon"><img src="https://developer.apple.com/assets/elements/icons/notes/notes-128x128_2x.png"><p>Notes</p></div>
+                <div class="app-icon"><span class="badge">11</span><img src="https://is1-ssl.mzstatic.com/image/thumb/Purple126/v4/91/92/79/9192794c-3593-3561-3964-b5525539d739/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg"><p>Reminders</p></div>
+                <div class="app-icon"><div class="clock-icon"><div class="hour-hand"></div><div class="minute-hand"></div><div class="second-hand"></div></div><p>Clock</p></div>
+                </div>
+            <div class="dock">
+                 <div id="gallery-app-icon" class="app-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Photos_app_logo.svg/2048px-Photos_app_logo.svg.png"><p>Gallery</p></div>
+                 <div id="music-app-icon" class="app-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Apple_Music_logo.svg/2048px-Apple_Music_logo.svg.png"><p>Music</p></div>
+                 <div class="app-icon"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Apple_Safari_logo.svg/2048px-Apple_Safari_logo.svg.png"><p>Safari</p></div>
+                 <div class="app-icon"><img src="https://assets.stickpng.com/images/580b57fcd9996e24bc43c52a.png"><p>Phone</p></div>
+            </div>
+        </div>
+
+        <div id="messages-app" class="app-screen">
+            <div class="app-header">
+                <span class="back-button">&lt; Home</span>
+                <strong>Nama Pengirim</strong>
+            </div>
+            <div class="chat-container">
+                <div class="bubble received" id="greeting-message"></div>
+            </div>
+        </div>
+
+        <div id="music-app" class="app-screen">
+            <div class="app-header">
+                <span class="back-button">&lt; Home</span>
+                <strong>Now Playing</strong>
+            </div>
+            <div class="music-player">
+                <img src="assets/img/album-art.jpg" alt="Album Art" class="album-art-large">
+                <h3>Nama Lagu Anda</h3>
+                <p>Nama Artis</p>
+                <audio id="audio-player" src="assets/music/your-song.mp3"></audio>
+                <div class="controls">
+                    <i class="fa-solid fa-backward-step"></i>
+                    <i id="play-pause-btn" class="fa-solid fa-play fa-2x"></i>
+                    <i class="fa-solid fa-forward-step"></i>
+                </div>
+            </div>
+        </div>
+
+        <div id="gallery-app" class="app-screen">
+            <div class="app-header">
+                <span class="back-button">&lt; Home</span>
+                <strong>Our Memories</strong>
+            </div>
+            <div class="gallery-grid">
+                <img src="assets/img/photo1.jpg" class="gallery-item" alt="Photo 1">
+                <img src="assets/img/photo2.jpg" class="gallery-item" alt="Photo 2">
+                <video controls class="gallery-item">
+                    <source src="assets/video/your-video.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+        
+        <div id="lightbox" class="lightbox">
+            <span class="close-lightbox">&times;</span>
+            <img class="lightbox-content" id="lightbox-img">
+        </div>
+
+    </div>
+    <div class="home-indicator"></div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

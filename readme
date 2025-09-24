@@ -1,0 +1,14 @@
+ios-greeting-card/
+├── index.html         // File utama untuk semua tampilan
+├── style.css          // File untuk semua gaya (desain)
+├── script.js          // File untuk semua interaksi (animasi, klik)
+└── assets/            // Folder untuk menyimpan semua media
+    ├── img/
+    │   ├── wallpaper.jpg
+    │   ├── photo1.jpg
+    │   ├── photo2.jpg
+    │   └── album-art.jpg
+    ├── music/
+    │   └── your-song.mp3
+    └── video/
+        └── your-video.mp4
