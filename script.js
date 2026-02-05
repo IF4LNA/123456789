@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // --- 3. Messages App (Typing Effect) ---
-    const greetingText = "Hai! Selamat ulang tahun ya. Semoga panjang umur, sehat selalu, dan semua yang kamu cita-citakan bisa tercapai. Terus jadi orang baik dan jangan lupa bahagia. Ini ada sedikit hadiah kecil dari aku, coba buka aplikasi Musik dan Galeri ya! 😊🎉";
+    const greetingText = "yeeeee udah SE nihhh wkwkk selamat yaa hafizhaaaaaa  Akhirnya kamu sampai juga di garis finis setelah semua perjuangan panjang itu.Sekarang udah resmi jadi Sarjana Ekonomi jangan lupa buka aplikasi Musik dan Galeri ya!";
     const messageElement = document.getElementById('greeting-message');
     let charIndex = 0;
     let typingInterval;

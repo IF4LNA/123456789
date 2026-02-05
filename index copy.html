@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Card - Fajar</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .cursive { font-family: 'Pacifico', cursive; }
+        .bg-beige { background-color: #EFE9D9; }
+        .text-blue-main { color: #2D5DA3; }
+        .bg-blue-main { background-color: #2D5DA3; }
+        .bg-text { font-size: 15rem; line-height: 0.8; font-weight: 900; z-index: 0; opacity: 0.9; }
+    </style>
+</head>
+<body class="bg-beige min-h-screen flex items-center justify-center p-4 overflow-hidden relative">
+
+    <div class="absolute top-0 left-0 w-full text-blue-main bg-text select-none text-center pt-10">BDAY</div>
+
+    <div class="relative z-10 bg-[#F5F1E6] border border-black shadow-2xl w-full max-w-md transform rotate-1 p-6 md:p-10">
+        
+        <div class="text-center mb-10 relative">
+            <span class="cursive absolute -top-8 left-1/2 -translate-x-1/2 text-4xl text-blue-main/40 whitespace-nowrap">Birthday</span>
+            <h1 class="text-2xl md:text-3xl font-black tracking-tighter uppercase leading-tight italic">
+                HBD, HAFIZHA!<br>SENDING YOU THE BEST VIBES
+            </h1>
+        </div>
+
+        <div class="space-y-6">
+            <div class="border-b border-black pb-4">
+                <span class="bg-blue-main text-white px-3 py-1 text-xs font-bold uppercase tracking-widest">Date</span>
+                <p class="text-3xl font-black mt-1">25 OCTOBER 2026</p>
+            </div>
+
+            <div class="border-b border-black pb-4">
+                <span class="bg-blue-main text-white px-3 py-1 text-xs font-bold uppercase tracking-widest">To</span>
+                <p class="text-xl font-bold mt-1 uppercase">Avery Syaffiqri</p>
+            </div>
+
+            <div class="border-b border-black pb-4">
+                <span class="bg-blue-main text-white px-3 py-1 text-xs font-bold uppercase tracking-widest">Message</span>
+                <p class="text-lg font-medium mt-2 leading-tight italic text-gray-800">
+                    "Wishing you a day that’s as bright and bold as you are. May this year bring you nothing but success and endless happiness!"
+                </p>
+            </div>
+        </div>
+
+        <div class="mt-10 text-center relative border-t-2 border-dashed border-black pt-6">
+            <span class="text-xs font-bold uppercase tracking-[0.3em] text-gray-500 block mb-1">With Love From:</span>
+            <p class="font-black text-2xl uppercase tracking-tighter">
+                Fajar & The Team
+            </p>
+             <span class="cursive absolute -bottom-6 left-1/2 -translate-x-1/2 text-5xl text-blue-main/20 pointer-events-none">Party</span>
+        </div>
+    </div>
+
+    <div class="absolute bottom-[-50px] left-0 w-full text-blue-main bg-text select-none text-center">PARTY</div>
+
+</body>
+</html>
