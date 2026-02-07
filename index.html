@@ -9,7 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
-<body class="min-h-screen flex items-center justify-center p-4 relative">
+<body class="min-h-screen flex items-center justify-center p-4 relative bg-[#EFE9D9]">
 
     <div id="shutter"></div>
 
@@ -17,7 +17,7 @@
     <div class="bottom-[-50px] bg-text text-blue-main">PARTY</div>
 
     <div id="mainCard" class="relative z-10 w-full max-w-md shadow-2xl transform rotate-2">
-        <div class="bg-[#F5F1E6] border-x border-t border-black p-6 md:p-10 text-left">
+        <div class="bg-[#F5F1E6] border-x-2 border-t-2 border-black p-6 md:p-10 text-left">
             <div class="text-center mb-10 relative">
                 <span class="cursive absolute -top-8 left-1/2 -translate-x-1/2 text-4xl text-blue-main/40 whitespace-nowrap">Birthday</span>
                 <h1 class="text-2xl md:text-3xl font-black tracking-tighter uppercase italic leading-tight">
@@ -25,15 +25,15 @@
                 </h1>
             </div>
             <div class="space-y-6">
-                <div class="border-b border-black pb-4">
+                <div class="border-b-2 border-black pb-4">
                     <span class="bg-blue-main text-white px-3 py-1 text-xs font-bold uppercase tracking-widest">Date</span>
-                    <p class="text-3xl font-black mt-1 uppercase">28 February 2026</p>
+                    <p class="text-3xl font-black mt-1">28 FEBRUARY 2026</p>
                 </div>
-                <div class="border-b border-black pb-4">
+                <div class="border-b-2 border-black pb-4">
                     <span class="bg-blue-main text-white px-3 py-1 text-xs font-bold uppercase tracking-widest">To</span>
                     <p class="text-xl font-bold mt-1 uppercase leading-tight">Lailatin Hafizha Qolbiah</p>
                 </div>
-                <div class="border-b border-black pb-4">
+                <div class="border-b-2 border-black pb-4">
                     <span class="bg-blue-main text-white px-3 py-1 text-xs font-bold uppercase tracking-widest">Message</span>
                     <p class="text-lg font-medium mt-2 leading-tight italic text-gray-800">
                         "Wishing you a day that’s as bright and bold as you are. Cheers to another year of greatness!"
@@ -42,12 +42,12 @@
             </div>
         </div>
 
-        <div onclick="tearAction()" class="relative h-14 bg-[#F5F1E6] border-x border-black flex items-center justify-center cursor-pointer group">
+        <div onclick="tearAction()" class="relative h-14 bg-[#F5F1E6] border-x-2 border-black flex items-center justify-center cursor-pointer group">
             <div class="absolute inset-0 flex items-center px-1"><div class="w-full border-t-2 border-dashed border-black"></div></div>
             <span class="relative z-10 bg-black text-white px-5 py-1.5 text-[10px] font-black tracking-[0.4em] uppercase group-hover:scale-110 transition">TEAR THE TICKET</span>
         </div>
 
-        <div id="bottomPart" class="tear-bottom bg-[#F5F1E6] border-x border-b border-black p-6 md:p-8">
+        <div id="bottomPart" class="tear-bottom bg-[#F5F1E6] border-x-2 border-b-2 border-black p-6 md:p-8">
             <div class="text-center relative">
                 <span class="text-xs font-bold uppercase tracking-[0.3em] text-gray-500 block mb-1">With Love From:</span>
                 <p class="font-black text-2xl uppercase tracking-tighter">Fajar</p>
@@ -63,7 +63,8 @@
         </div>
     </div>
 
-    <div id="newPage" class="relative z-50 w-full max-w-5xl py-20 hidden opacity-0 transition-opacity duration-1000">
+<div id="newPage" class="relative z-50 w-full max-w-5xl py-20 hidden opacity-0 transition-opacity duration-1000">
+    <div id="galleryWrapper">
         <div class="text-center mb-12 px-4">
             <h2 class="cursive text-6xl md:text-8xl text-blue-main mb-4">Captured!</h2>
             <p class="text-xl font-bold uppercase tracking-widest text-gray-800">Our Special Snapshots</p>
@@ -71,12 +72,18 @@
         <div id="polaroidGallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6"></div>
         
         <div id="surpriseContainer" class="mt-20 text-center opacity-0 transition-opacity duration-1000 pointer-events-none">
-            <button onclick="launchConfetti()" class="bg-blue-main text-white px-8 py-4 rounded-full font-bold shadow-2xl hover:bg-blue-700 transition transform hover:scale-110 active:scale-95 text-lg uppercase tracking-widest">
+            <button onclick="handleSurpriseClick()" class="bg-blue-main text-white px-8 py-4 rounded-full font-bold shadow-2xl hover:bg-blue-700 transition transform hover:scale-110 active:scale-95 text-lg uppercase tracking-widest border-2 border-black">
                 CLICK FOR A SURPRISE 🎁
             </button>
-            <p class="cursive text-3xl text-blue-main mt-12 block">Happy Birthday, Hafizha!</p>
         </div>
     </div>
+
+    <div id="musicPage" class="hidden opacity-0 transition-all duration-1000 max-w-2xl mx-auto px-4 text-center">
+        <div class="music-content bg-white p-6 border-2 border-black shadow-[10px_10px_0px_0px_rgba(45,93,163,1)]">
+            </div>
+    </div>
+</div>
+
 
     <script src="script.js"></script>
 </body>

@@ -1,37 +1,20 @@
-/* General Layout */
-body { 
-    background-color: #EFE9D9; 
-    overflow-x: hidden; 
-}
-
+body { background-color: #EFE9D9; overflow-x: hidden; }
 .cursive { font-family: 'Pacifico', cursive; }
 .text-blue-main { color: #2D5DA3; }
 .bg-blue-main { background-color: #2D5DA3; }
 
-/* Background Decoration */
 .bg-text { 
     font-size: clamp(5rem, 15vw, 15rem); 
-    line-height: 0.8; 
-    font-weight: 900; 
-    z-index: 0; 
-    opacity: 0.9; 
-    position: absolute; 
-    width: 100%; 
-    text-align: center; 
-    pointer-events: none; 
+    line-height: 0.8; font-weight: 900; z-index: 0; 
+    opacity: 0.9; position: absolute; width: 100%; text-align: center; pointer-events: none; 
 }
 
-/* 1. Tear Effect */
+/* Tear Effect */
 .tear-bottom {
     transition: all 1.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
     transform-origin: top left;
 }
-
-.is-torn { 
-    transform: translateY(100vh) rotate(25deg); 
-    opacity: 0; 
-    pointer-events: none; 
-}
+.is-torn { transform: translateY(100vh) rotate(25deg); opacity: 0; pointer-events: none; }
 
 @keyframes shakeRotate {
     0% { transform: rotate(2deg) translateX(0); }
@@ -41,28 +24,15 @@ body {
 }
 .shaking { animation: shakeRotate 0.1s infinite; }
 
-/* 2. Camera Section */
-#cameraSection { 
-    display: none; 
-    opacity: 0; 
-    transition: opacity 0.8s ease; 
-}
+/* Camera Section */
+#cameraSection { display: none; opacity: 0; transition: opacity 0.8s ease; }
 
 /* Shutter Flash */
-#shutter {
-    position: fixed; inset: 0; background: white; z-index: 9999; display: none;
-}
-.flash-active { 
-    display: block !important; 
-    animation: flashAnim 0.4s forwards; 
-}
-@keyframes flashAnim { 
-    0% { opacity: 0; } 
-    50% { opacity: 1; } 
-    100% { opacity: 0; } 
-}
+#shutter { position: fixed; inset: 0; background: white; z-index: 9999; display: none; }
+.flash-active { display: block !important; animation: flashAnim 0.4s forwards; }
+@keyframes flashAnim { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
 
-/* 3. Polaroid Gallery Styling */
+/* Polaroid Styling */
 .polaroid-frame {
     background-color: white;
     padding: 0.75rem 0.75rem 3rem 0.75rem;
@@ -71,16 +41,5 @@ body {
     opacity: 0;
     transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
-
-.polaroid-frame.printed { 
-    transform: rotate(var(--rotate-deg, 0deg)) translateY(0); 
-    opacity: 1; 
-}
-
-.polaroid-content {
-    width: 100%;
-    aspect-ratio: 1/1;
-    background-color: #eee;
-    overflow: hidden;
-}
-
+.polaroid-frame.printed { transform: rotate(var(--rotate-deg, 0deg)) translateY(0); opacity: 1; }
+.polaroid-content { width: 100%; aspect-ratio: 1/1; background-color: #eee; overflow: hidden; }
