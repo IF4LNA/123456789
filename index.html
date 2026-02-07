@@ -18,6 +18,11 @@
 
     <div id="mainCard" class="relative z-10 w-full max-w-md shadow-2xl transform rotate-2">
         <div class="bg-[#F5F1E6] border-x-2 border-t-2 border-black p-6 md:p-10 text-left">
+            <div class="absolute right-0 top-1/4 flex flex-col gap-1 z-20">
+            <button onclick="skipTo('gallery')" class="nav-tab-internal">Gallery</button>
+            <button onclick="skipTo('music')" class="nav-tab-internal">Music</button>
+            <button onclick="skipTo('tetris')" class="nav-tab-internal">Tetris</button>
+        </div>
             <div class="text-center mb-10 relative">
                 <span class="cursive absolute -top-8 left-1/2 -translate-x-1/2 text-4xl text-blue-main/40 whitespace-nowrap">Birthday</span>
                 <h1 class="text-2xl md:text-3xl font-black tracking-tighter uppercase italic leading-tight">
@@ -40,6 +45,7 @@
                     </p>
                 </div>
             </div>
+
         </div>
 
         <div onclick="tearAction()" class="relative h-14 bg-[#F5F1E6] border-x-2 border-black flex items-center justify-center cursor-pointer group">
@@ -84,6 +90,47 @@
     </div>
 </div>
 
+<div id="tetrisPage" class="hidden opacity-0 transition-all duration-1000 max-w-2xl mx-auto px-4 text-center">
+    <div class="bg-[#F5F1E6] border-2 border-black p-4 shadow-[10px_10px_0px_0px_rgba(0,0,0,1)]">
+        <div class="flex justify-between items-center border-b-2 border-black pb-2 mb-4">
+            <h2 class="cursive text-3xl text-blue-main">Tetris Time!</h2>
+            <div class="text-[10px] font-black uppercase text-right leading-tight">
+                Score: <span id="score" class="text-blue-main">0</span><br>
+                Lines: <span id="lines" class="text-blue-main">0</span>
+            </div>
+        </div>
+
+        <div class="tetris-game relative bg-white border-2 border-black flex justify-center items-center overflow-hidden h-[450px]">
+            <canvas id="tetris-canvas"></canvas>
+            
+            <div id="game-over-modal" class="absolute inset-0 bg-blue-main/90 flex flex-col items-center justify-center text-white opacity-0 pointer-events-none transition-opacity">
+                <h4 class="font-black text-4xl mb-4">GAME OVER</h4>
+                <button onclick="confirmGameOver()" class="bg-white text-blue-main px-8 py-2 font-black text-sm uppercase border-2 border-black hover:bg-[#EFE9D9]">CONTINUE</button>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-3 gap-2 mt-4">
+            <button class="game-ctrl" onclick="moveTetrisPiece('left')">◀</button>
+            <button class="game-ctrl" onclick="rotateTetrisPiece()">ROTATE</button>
+            <button class="game-ctrl" onclick="moveTetrisPiece('right')">▶</button>
+            <button class="game-ctrl col-span-3 py-3" onclick="moveTetrisPiece('down')">▼ SOFT DROP</button>
+        </div>
+    </div>
+</div>
+
+<div id="final-message-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 hidden opacity-0 transition-opacity duration-500 p-4">
+    <div class="bg-[#F5F1E6] border-4 border-blue-main p-8 max-w-sm w-full text-center shadow-[15px_15px_0px_0px_rgba(45,93,163,1)]">
+        <h3 class="cursive text-4xl text-blue-main mb-4">Inget Ya!</h3>
+        <div class="font-bold text-gray-800 space-y-2 mb-6 uppercase tracking-tight">
+            <p>Walaupun kamu kalah di game,</p>
+            <p>Tapi kamu selalu menang</p>
+            <p>Kok di hati aku, HEHE</p>
+            <p class="text-2xl mt-4">^_^</p>
+            <p class="text-pink-600 text-xl italic">I LOVE YOU &lt;3</p>
+        </div>
+        <button onclick="location.reload()" class="bg-blue-main text-white px-10 py-3 font-black uppercase border-2 border-black hover:scale-105 transition">OK!</button>
+    </div>
+</div>
 
     <script src="script.js"></script>
 </body>

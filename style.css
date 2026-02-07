@@ -43,3 +43,92 @@ body { background-color: #EFE9D9; overflow-x: hidden; }
 }
 .polaroid-frame.printed { transform: rotate(var(--rotate-deg, 0deg)) translateY(0); opacity: 1; }
 .polaroid-content { width: 100%; aspect-ratio: 1/1; background-color: #eee; overflow: hidden; }
+
+/* Tetris Custom Styling */
+.game-ctrl {
+    background-color: white;
+    border: 2px solid black;
+    font-weight: 900;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    padding: 0.75rem 0;
+    box-shadow: 4px 4px 0px 0px rgba(0,0,0,1);
+    transition: all 0.1s;
+}
+
+.game-ctrl:active {
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,1);
+    transform: translate(2px, 2px);
+    background-color: #2D5DA3;
+    color: white;
+}
+
+#tetris-canvas {
+    image-rendering: pixelated;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* Styling untuk Tab Navigasi Samping */
+.nav-tab {
+    box-shadow: 4px 0px 0px 0px rgba(0,0,0,1);
+    cursor: pointer;
+}
+
+.nav-tab:hover {
+    transform: translateX(5px);
+    box-shadow: 2px 0px 0px 0px rgba(0,0,0,1);
+}
+
+/* Memastikan mainCard memiliki overflow visible agar tab tidak terpotong */
+#mainCard {
+    overflow: visible !important;
+}
+
+/* Anda bisa menghapus bagian nav-tab yang lama dan menggantinya dengan ini */
+.active-nav {
+    background-color: #2D5DA3 !important;
+    color: white !important;
+    box-shadow: none !important;
+    transform: translate(2px, 2px);
+}
+
+/* Navigasi Tab Internal Gaya Desain Sebelumnya */
+.nav-tab-internal {
+    writing-mode: vertical-lr;
+    background-color: #D9D2C2;
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    border-bottom: 2px solid black;
+    padding: 12px 6px;
+    font-size: 9px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border-radius: 4px 0 0 4px; /* Membulat di sisi kiri agar menyatu ke dalam */
+    box-shadow: -2px 2px 0px 0px rgba(0,0,0,1);
+}
+
+.nav-tab-internal:hover {
+    background-color: #2D5DA3;
+    color: white;
+    transform: translateX(-3px); /* Bergeser sedikit ke kiri saat di-hover */
+}
+
+.nav-tab-internal:active {
+    box-shadow: none;
+    transform: translateX(0);
+}
+
+/* Pastikan ini ada untuk memaksa modal tampil saat opacity-100 ditambahkan */
+#game-over-modal.opacity-100 {
+    opacity: 1 !important;
+    pointer-events: auto !important;
+}
+
+#final-message-modal.opacity-100 {
+    opacity: 1 !important;
+}
+
