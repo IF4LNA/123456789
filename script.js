@@ -1,126 +1,125 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // --- Elemen Global ---
-    const allScreens = document.querySelectorAll('.app-screen');
-    const backButtons = document.querySelectorAll('.back-button');
+// 1. KONFIGURASI FOTO & PLAYLIST
+// Ganti URL 'src' dengan link foto asli Hafizha
+const myPhotos = [
+    { src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80', caption: 'Your Beautiful Smile' },
+    { src: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80', caption: 'Special Moments' },
+    { src: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80', caption: 'Forever Happy' }
+];
 
-    // --- Layar dan Ikon ---
-    const lockScreen = document.getElementById('lock-screen');
-    const homeScreen = document.getElementById('home-screen');
-    const messagesApp = document.getElementById('messages-app');
-    const musicApp = document.getElementById('music-app');
-    const galleryApp = document.getElementById('gallery-app');
+// Ganti link ini dengan link 'Embed' dari playlist Spotify yang sudah Anda buat
+const spotifyEmbedLink = "https://open.spotify.com/embed/playlist/37i9dQZF1DXcBWIGoYBM5M?utm_source=generator";
+
+// 2. ANIMASI SOBEK TIKET
+function tearAction() {
+    const bottom = document.getElementById('bottomPart');
+    const mainCard = document.getElementById('mainCard');
+    const camera = document.getElementById('cameraSection');
+
+    // Menambah efek getar sebelum sobek
+    mainCard.classList.add('shaking');
     
-    const messagesAppIcon = document.getElementById('messages-app-icon');
-    const musicAppIcon = document.getElementById('music-app-icon');
-    const galleryAppIcon = document.getElementById('gallery-app-icon');
+    setTimeout(() => {
+        mainCard.classList.remove('shaking');
+        bottom.classList.add('is-torn');
+        
+        setTimeout(() => {
+            mainCard.style.opacity = '0';
+            setTimeout(() => {
+                mainCard.style.display = 'none';
+                camera.style.display = 'flex';
+                setTimeout(() => camera.style.opacity = '1', 50);
+            }, 500);
+        }, 600);
+    }, 300);
+}
 
-    // --- Fungsi Navigasi ---
-    function showScreen(screenToShow) {
-        allScreens.forEach(screen => {
-            screen.classList.remove('active');
-        });
-        screenToShow.classList.add('active');
-    }
+// 3. ANIMASI KLIK KAMERA
+async function takePhoto() {
+    const shutter = document.getElementById('shutter');
+    const camera = document.getElementById('cameraSection');
+    const newPage = document.getElementById('newPage');
 
-    // --- 1. Lock Screen Logic ---
-    const statusBarTime = document.getElementById('status-bar-time');
-    const lockScreenTime = document.getElementById('lock-screen-time');
-    const lockScreenDate = document.getElementById('lock-screen-date');
-
-    function updateTime() {
-        const now = new Date();
-        const hours = String(now.getHours()).padStart(2, '0');
-        const minutes = String(now.getMinutes()).padStart(2, '0');
-        const timeString = `${hours}:${minutes}`;
-
-        const options = { weekday: 'long', day: 'numeric' };
-        const dateString = now.toLocaleDateString('en-US', options);
-
-        statusBarTime.textContent = timeString;
-        lockScreenTime.textContent = timeString;
-        lockScreenDate.textContent = dateString;
-    }
-    setInterval(updateTime, 1000);
-    updateTime();
-
-    // Unlock
-    lockScreen.addEventListener('click', () => showScreen(homeScreen));
-
-    // --- 2. Home Screen Logic (Navigasi Aplikasi) ---
-    messagesAppIcon.addEventListener('click', () => {
-        showScreen(messagesApp);
-        // Memulai efek mengetik saat aplikasi pesan dibuka
-        typeGreeting(); 
-    });
-    musicAppIcon.addEventListener('click', () => showScreen(musicApp));
-    galleryAppIcon.addEventListener('click', () => showScreen(galleryApp));
-
-    // Tombol kembali untuk semua aplikasi
-    backButtons.forEach(button => {
-        button.addEventListener('click', () => showScreen(homeScreen));
-    });
-
-    // --- 3. Messages App (Typing Effect) ---
-    const greetingText = "yeeeee udah SE nihhh wkwkk selamat yaa hafizhaaaaaa  Akhirnya kamu sampai juga di garis finis setelah semua perjuangan panjang itu.Sekarang udah resmi jadi Sarjana Ekonomi jangan lupa buka aplikasi Musik dan Galeri ya!";
-    const messageElement = document.getElementById('greeting-message');
-    let charIndex = 0;
-    let typingInterval;
-
-    function typeWriter() {
-        if (charIndex < greetingText.length) {
-            messageElement.innerHTML += greetingText.charAt(charIndex);
-            charIndex++;
-        } else {
-            clearInterval(typingInterval);
-            messageElement.style.borderRight = 'none'; // Hapus kursor setelah selesai
-        }
-    }
-
-    // Fungsi untuk memulai/mereset typing effect
-    function typeGreeting() {
-        messageElement.innerHTML = ''; // Kosongkan pesan
-        charIndex = 0; // Reset index
-        clearInterval(typingInterval); // Hentikan interval sebelumnya jika ada
-        typingInterval = setInterval(typeWriter, 50); // Kecepatan mengetik (ms)
-    }
-
-    // --- 4. Music App Logic ---
-    const audioPlayer = document.getElementById('audio-player');
-    const playPauseBtn = document.getElementById('play-pause-btn');
-
-    playPauseBtn.addEventListener('click', () => {
-        if (audioPlayer.paused) {
-            audioPlayer.play();
-            playPauseBtn.classList.remove('fa-play');
-            playPauseBtn.classList.add('fa-pause');
-        } else {
-            audioPlayer.pause();
-            playPauseBtn.classList.remove('fa-pause');
-            playPauseBtn.classList.add('fa-play');
-        }
-    });
-
-    // --- 5. Gallery App Logic (Lightbox) ---
-    const galleryItems = document.querySelectorAll('.gallery-item[src$=".jpg"]'); // Hanya untuk gambar
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const closeLightbox = document.querySelector('.close-lightbox');
-
-    galleryItems.forEach(item => {
-        item.addEventListener('click', () => {
-            lightbox.style.display = 'flex';
-            lightboxImg.src = item.src;
-        });
-    });
-
-    closeLightbox.addEventListener('click', () => {
-        lightbox.style.display = 'none';
-    });
+    // Efek Flash Putih
+    shutter.classList.add('flash-active');
     
-    // Tutup lightbox jika klik di luar gambar
-    lightbox.addEventListener('click', (e) => {
-        if (e.target === lightbox) {
-            lightbox.style.display = 'none';
-        }
+    setTimeout(() => {
+        shutter.classList.remove('flash-active');
+        camera.style.opacity = '0';
+        
+        setTimeout(() => {
+            camera.style.display = 'none';
+            // Izinkan scroll agar bisa melihat galeri ke bawah
+            document.body.style.overflowY = 'auto'; 
+            newPage.style.display = 'block';
+            setTimeout(() => {
+                newPage.style.opacity = '1';
+                renderPolaroids();
+            }, 100);
+        }, 500);
+    }, 400);
+}
+
+// 4. RENDER POLAROID (MUNCUL SATU PER SATU)
+async function renderPolaroids() {
+    const gallery = document.getElementById('polaroidGallery');
+    const surprise = document.getElementById('surpriseContainer');
+
+    for (let i = 0; i < myPhotos.length; i++) {
+        const p = myPhotos[i];
+        const rotate = Math.random() * 10 - 5; // Rotasi acak agar terlihat natural
+        
+        const pol = document.createElement('div');
+        pol.className = 'polaroid-frame';
+        pol.style.setProperty('--rotate-deg', `${rotate}deg`);
+        pol.innerHTML = `
+            <div class="polaroid-content">
+                <img src="${p.src}" class="w-full h-full object-cover">
+            </div>
+            <p class="cursive text-xl mt-4 text-center text-gray-700">${p.caption}</p>
+        `;
+        
+        gallery.appendChild(pol);
+        
+        // Delay kecil agar animasi CSS 'printed' berjalan
+        await new Promise(r => setTimeout(r, 400));
+        pol.classList.add('printed');
+        
+        // Jeda waktu sebelum foto berikutnya muncul
+        await new Promise(r => setTimeout(r, 1000));
+    }
+
+    // Munculkan tombol surprise setelah foto terakhir selesai dicetak
+    setTimeout(() => {
+        surprise.classList.remove('opacity-0');
+        surprise.style.opacity = '1';
+        surprise.style.pointerEvents = 'auto';
+    }, 500);
+}
+
+// 5. HANDLE SURPRISE CLICK (KONFETI & MUSIK)
+function handleSurpriseClick() {
+    // Jalankan efek Konfeti
+    confetti({
+        particleCount: 150,
+        spread: 70,
+        origin: { y: 0.6 }
     });
-});
+
+    const musicContainer = document.getElementById('musicContainer');
+    const spotifyPlayer = document.getElementById('spotify-player');
+
+    // Memasukkan link Spotify hanya saat tombol diklik (Lazy Load)
+    if (!spotifyPlayer.src) {
+        spotifyPlayer.src = spotifyEmbedLink;
+    }
+
+    // Menampilkan Container Musik dengan animasi
+    musicContainer.classList.remove('hidden');
+    setTimeout(() => {
+        musicContainer.classList.remove('opacity-0');
+        musicContainer.style.opacity = '1';
+        
+        // Scroll otomatis ke bawah agar player Spotify terlihat
+        musicContainer.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+}

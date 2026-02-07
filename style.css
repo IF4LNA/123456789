@@ -1,201 +1,86 @@
-/* --- Global Reset & Font --- */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* General Layout */
+body { 
+    background-color: #EFE9D9; 
+    overflow-x: hidden; 
 }
 
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #e0e0e0;
-    font-family: 'Roboto', -apple-system, sans-serif;
-    padding: 10px;
+.cursive { font-family: 'Pacifico', cursive; }
+.text-blue-main { color: #2D5DA3; }
+.bg-blue-main { background-color: #2D5DA3; }
+
+/* Background Decoration */
+.bg-text { 
+    font-size: clamp(5rem, 15vw, 15rem); 
+    line-height: 0.8; 
+    font-weight: 900; 
+    z-index: 0; 
+    opacity: 0.9; 
+    position: absolute; 
+    width: 100%; 
+    text-align: center; 
+    pointer-events: none; 
 }
 
-/* --- iPhone Frame & Screen --- */
-.iphone-container {
-    width: 375px;
-    height: 812px;
-    background: #111;
-    border-radius: 50px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
-    padding: 12px;
-    position: relative;
+/* 1. Tear Effect */
+.tear-bottom {
+    transition: all 1.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
+    transform-origin: top left;
 }
 
-.screen {
+.is-torn { 
+    transform: translateY(100vh) rotate(25deg); 
+    opacity: 0; 
+    pointer-events: none; 
+}
+
+@keyframes shakeRotate {
+    0% { transform: rotate(2deg) translateX(0); }
+    25% { transform: rotate(3deg) translateX(2px); }
+    75% { transform: rotate(1deg) translateX(-2px); }
+    100% { transform: rotate(2deg) translateX(0); }
+}
+.shaking { animation: shakeRotate 0.1s infinite; }
+
+/* 2. Camera Section */
+#cameraSection { 
+    display: none; 
+    opacity: 0; 
+    transition: opacity 0.8s ease; 
+}
+
+/* Shutter Flash */
+#shutter {
+    position: fixed; inset: 0; background: white; z-index: 9999; display: none;
+}
+.flash-active { 
+    display: block !important; 
+    animation: flashAnim 0.4s forwards; 
+}
+@keyframes flashAnim { 
+    0% { opacity: 0; } 
+    50% { opacity: 1; } 
+    100% { opacity: 0; } 
+}
+
+/* 3. Polaroid Gallery Styling */
+.polaroid-frame {
+    background-color: white;
+    padding: 0.75rem 0.75rem 3rem 0.75rem;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transform: rotate(var(--rotate-deg, 0deg)) translateY(50px);
+    opacity: 0;
+    transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.polaroid-frame.printed { 
+    transform: rotate(var(--rotate-deg, 0deg)) translateY(0); 
+    opacity: 1; 
+}
+
+.polaroid-content {
     width: 100%;
-    height: 100%;
-    background-image: url('assets/img/wallpaper.jpg'); /* GANTI WALLPAPER ANDA DI SINI */
-    background-size: cover;
-    background-position: center;
-    border-radius: 38px;
-    position: relative;
+    aspect-ratio: 1/1;
+    background-color: #eee;
     overflow: hidden;
-    color: white;
 }
 
-/* --- Status Bar & Notch --- */
-.status-bar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 44px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 24px;
-    z-index: 100;
-    color: white;
-}
-.time { font-weight: 500; }
-.icons { display: flex; gap: 6px; }
-.notch {
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 140px;
-    height: 30px;
-    background: #111;
-    border-radius: 0 0 18px 18px;
-}
-
-/* --- App Wrapper & Screens --- */
-.app-wrapper {
-    width: 100%;
-    height: 100%;
-    position: relative;
-}
-.app-screen {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: none;
-    flex-direction: column;
-}
-.app-screen.active {
-    display: flex;
-}
-
-/* --- 1. Lock Screen --- */
-#lock-screen {
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-.lock-time { font-size: 72px; font-weight: 200; }
-.lock-date { font-size: 22px; margin-top: -5px; }
-.notification {
-    background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border-radius: 18px;
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    margin-top: 50px;
-    width: 90%;
-}
-.notification img { width: 25px; height: 25px; margin-right: 10px; }
-.notification p { margin: 0; font-size: 14px; text-align: left; }
-.unlock-prompt { position: absolute; bottom: 80px; font-weight: 500; }
-
-/* --- 2. Home Screen Layout --- */
-#home-screen {
-    padding: 44px 15px 0; /* 44px Jarak dari atas untuk status bar */
-    justify-content: space-between;
-}
-.widgets-container { display: flex; gap: 15px; margin-top: 20px; }
-.widget { flex: 1; height: 160px; border-radius: 20px; padding: 15px; }
-.widget.notes { background-color: rgba(255, 214, 10, 0.9); color: black; }
-.widget.calendar { background: rgba(255, 255, 255, 0.9); color: black; }
-.calendar-date { font-size: 40px; font-weight: bold; margin: 5px 0; }
-.app-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    row-gap: 20px;
-    column-gap: 15px;
-    padding: 20px 10px;
-    flex-grow: 1; /* INI KUNCI PENTING agar dock terdorong ke bawah */
-}
-.app-icon { text-align: center; cursor: pointer; position: relative; }
-.app-icon img, .cal-icon, .clock-icon { width: 60px; height: 60px; border-radius: 15px; margin-bottom: 5px; }
-.app-icon p { font-size: 12px; color: white; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
-.badge {
-    position: absolute; top: -5px; right: 5px; background: red;
-    width: 20px; height: 20px; border-radius: 50%; display: flex;
-    justify-content: center; align-items: center; font-size: 12px; font-weight: bold;
-}
-.dock {
-    width: calc(100% - 20px);
-    margin: 0 auto 10px auto;
-    background: rgba(255, 255, 255, 0.2);
-    backdrop-filter: blur(25px);
-    -webkit-backdrop-filter: blur(25px);
-    border-radius: 25px;
-    padding: 12px 0;
-    display: flex;
-    justify-content: space-around;
-    flex-shrink: 0; /* Mencegah dock menyusut */
-}
-.dock .app-icon img { width: 50px; height: 50px; }
-.dock .app-icon p { display: none; }
-.home-indicator {
-    position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
-    width: 135px; height: 5px; background: #fff; border-radius: 5px;
-}
-
-/* --- Halaman Aplikasi Internal (Pesan, Musik, Galeri) --- */
-.app-header {
-    width: 100%;
-    padding: 12px 15px;
-    text-align: center;
-    font-weight: 500;
-    position: absolute;
-    top: 30px;
-    left: 0;
-    background: #f7f7f7;
-    border-bottom: 1px solid #e5e5e5;
-    z-index: 50;
-}
-.back-button { position: absolute; left: 15px; color: #007aff; cursor: pointer; }
-#messages-app, #music-app, #gallery-app { background: #fff; color: #000; padding-top: 88px; }
-
-/* 3. Pesan */
-.chat-container { padding: 20px; display: flex; flex-direction: column; }
-.bubble { padding: 10px 15px; border-radius: 18px; max-width: 75%; word-wrap: break-word; }
-.bubble.received { background-color: #e5e5ea; color: black; align-self: flex-start; }
-#greeting-message::after { content: '|'; animation: blink 1s step-end infinite; }
-@keyframes blink { 50% { color: transparent; } }
-
-/* 4. Musik */
-.music-player { display: flex; flex-direction: column; align-items: center; padding: 30px; }
-.album-art-large { width: 250px; height: 250px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.2); margin-bottom: 20px; }
-.controls { display: flex; align-items: center; justify-content: center; gap: 40px; margin-top: 30px; font-size: 24px; }
-#play-pause-btn { color: #000; cursor: pointer; }
-
-/* 5. Galeri */
-.gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; overflow-y: auto; flex-grow: 1; height: 100%; }
-.gallery-item { width: 100%; height: 120px; object-fit: cover; cursor: pointer; }
-.lightbox { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); justify-content: center; align-items: center; }
-.lightbox-content { max-width: 90%; max-height: 80%; }
-.close-lightbox { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; }
-
-/* Tambahan untuk ikon Calendar dan Clock */
-.cal-icon { background: #fff; color: #000; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-.cal-icon span { color: red; font-size: 12px; font-weight: bold; }
-.cal-icon strong { font-size: 28px; line-height: 1; }
-.clock-icon { background: #fff; position: relative; }
-.hour-hand, .minute-hand, .second-hand { position: absolute; left: 50%; top: 50%; transform-origin: bottom; background: #000; }
-.hour-hand { width: 2px; height: 15px; margin-left: -1px; margin-top: -15px; }
-.minute-hand { width: 2px; height: 22px; margin-left: -1px; margin-top: -22px; }
-.second-hand { width: 1px; height: 20px; margin-left: -0.5px; margin-top: -20px; background: red; }

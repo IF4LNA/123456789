@@ -3,77 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Birthday Card - Fajar</title>
+    <title>Birthday Card - Hafizha</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Pacifico&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Inter', sans-serif; background-color: #EFE9D9; overflow: hidden; }
-        .cursive { font-family: 'Pacifico', cursive; }
-        .text-blue-main { color: #2D5DA3; }
-        .bg-blue-main { background-color: #2D5DA3; }
-        
-        /* Animasi Bagian Bawah Jatuh */
-        .tear-bottom {
-            transition: all 1.2s cubic-bezier(0.6, -0.28, 0.735, 0.045);
-            transform-origin: top left;
-        }
-
-        .is-torn {
-            transform: translateY(100vh) rotate(25deg);
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        /* Transisi ke Halaman Baru */
-        #newPage {
-            display: none;
-            opacity: 0;
-            transition: opacity 1s ease-in;
-        }
-
-        .bg-text { 
-            font-size: 15rem; line-height: 0.8; font-weight: 900; z-index: 0; 
-            opacity: 0.9; position: absolute; width: 100%; text-align: center; pointer-events: none; 
-        }
-
-        /* Animasi Getar saat Sobek */
-        @keyframes shakeRotate {
-            0% { transform: rotate(2deg) translateX(0); }
-            25% { transform: rotate(3deg) translateX(2px); }
-            75% { transform: rotate(1deg) translateX(-2px); }
-            100% { transform: rotate(2deg) translateX(0); }
-        }
-        .shaking { animation: shakeRotate 0.1s infinite; }
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="min-h-screen flex items-center justify-center p-4 relative">
+
+    <div id="shutter"></div>
 
     <div class="top-0 bg-text text-blue-main pt-10">BDAY</div>
     <div class="bottom-[-50px] bg-text text-blue-main">PARTY</div>
 
-    <div id="newPage" class="relative z-50 text-center w-full max-w-2xl px-6">
-        <h2 class="cursive text-7xl text-blue-main mb-6">Surprise!</h2>
-        <p class="text-2xl font-bold uppercase tracking-widest text-gray-800">Your custom content goes here...</p>
-    </div>
-
-    <div id="mainCard" class="relative z-10 w-full max-w-md shadow-2xl transition-opacity duration-500 transform rotate-2">
-        
-        <div class="bg-[#F5F1E6] border-x border-t border-black p-6 md:p-10">
+    <div id="mainCard" class="relative z-10 w-full max-w-md shadow-2xl transform rotate-2">
+        <div class="bg-[#F5F1E6] border-x border-t border-black p-6 md:p-10 text-left">
             <div class="text-center mb-10 relative">
                 <span class="cursive absolute -top-8 left-1/2 -translate-x-1/2 text-4xl text-blue-main/40 whitespace-nowrap">Birthday</span>
-                <h1 class="text-2xl md:text-3xl font-black tracking-tighter uppercase leading-tight italic">
+                <h1 class="text-2xl md:text-3xl font-black tracking-tighter uppercase italic leading-tight">
                     HBD, HAFIZHA!<br>SENDING YOU THE BEST VIBES
                 </h1>
             </div>
-
-            <div class="space-y-6 text-left">
+            <div class="space-y-6">
                 <div class="border-b border-black pb-4">
                     <span class="bg-blue-main text-white px-3 py-1 text-xs font-bold uppercase tracking-widest">Date</span>
-                    <p class="text-3xl font-black mt-1">28 FEBRUARY 2026</p>
+                    <p class="text-3xl font-black mt-1 uppercase">28 February 2026</p>
                 </div>
                 <div class="border-b border-black pb-4">
                     <span class="bg-blue-main text-white px-3 py-1 text-xs font-bold uppercase tracking-widest">To</span>
-                    <p class="text-xl font-bold mt-1 uppercase">LAILATIN HAFIZHA QOLBIAH</p>
+                    <p class="text-xl font-bold mt-1 uppercase leading-tight">Lailatin Hafizha Qolbiah</p>
                 </div>
                 <div class="border-b border-black pb-4">
                     <span class="bg-blue-main text-white px-3 py-1 text-xs font-bold uppercase tracking-widest">Message</span>
@@ -85,50 +43,41 @@
         </div>
 
         <div onclick="tearAction()" class="relative h-14 bg-[#F5F1E6] border-x border-black flex items-center justify-center cursor-pointer group">
-            <div class="absolute inset-0 flex items-center px-1">
-                <div class="w-full border-t-2 border-dashed border-black"></div>
-            </div>
-            <span class="relative z-10 bg-black text-white px-5 py-1.5 text-[10px] font-black tracking-[0.4em] uppercase group-hover:scale-110 transition shadow-lg">
-                TEAR THE TICKET
-            </span>
+            <div class="absolute inset-0 flex items-center px-1"><div class="w-full border-t-2 border-dashed border-black"></div></div>
+            <span class="relative z-10 bg-black text-white px-5 py-1.5 text-[10px] font-black tracking-[0.4em] uppercase group-hover:scale-110 transition">TEAR THE TICKET</span>
         </div>
 
         <div id="bottomPart" class="tear-bottom bg-[#F5F1E6] border-x border-b border-black p-6 md:p-8">
             <div class="text-center relative">
-                <span class="text-xs font-bold uppercase tracking-[0.3em] text-gray-500 block mb-1 text-center">With Love From:</span>
-                <p class="font-black text-2xl uppercase tracking-tighter text-center">Fajar</p>
+                <span class="text-xs font-bold uppercase tracking-[0.3em] text-gray-500 block mb-1">With Love From:</span>
+                <p class="font-black text-2xl uppercase tracking-tighter">Fajar</p>
                 <span class="cursive absolute -bottom-6 left-1/2 -translate-x-1/2 text-5xl text-blue-main/20 pointer-events-none">Party</span>
             </div>
         </div>
     </div>
 
-    <script>
-        function tearAction() {
-            const bottom = document.getElementById('bottomPart');
-            const mainCard = document.getElementById('mainCard');
-            const newPage = document.getElementById('newPage');
+    <div id="cameraSection" class="relative z-50 flex flex-col items-center">
+        <p class="cursive text-3xl mb-6 text-blue-main">Click the red button!</p>
+        <div class="relative w-72 md:w-96 group cursor-pointer" onclick="takePhoto()">
+            <img src="/assets/polaroid.png" alt="Polaroid Camera" class="w-full drop-shadow-2xl group-hover:scale-105 transition duration-300">
+        </div>
+    </div>
 
-            // 1. Tambahkan efek getar miring
-            mainCard.classList.add('shaking');
+    <div id="newPage" class="relative z-50 w-full max-w-5xl py-20 hidden opacity-0 transition-opacity duration-1000">
+        <div class="text-center mb-12 px-4">
+            <h2 class="cursive text-6xl md:text-8xl text-blue-main mb-4">Captured!</h2>
+            <p class="text-xl font-bold uppercase tracking-widest text-gray-800">Our Special Snapshots</p>
+        </div>
+        <div id="polaroidGallery" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6"></div>
+        
+        <div id="surpriseContainer" class="mt-20 text-center opacity-0 transition-opacity duration-1000 pointer-events-none">
+            <button onclick="launchConfetti()" class="bg-blue-main text-white px-8 py-4 rounded-full font-bold shadow-2xl hover:bg-blue-700 transition transform hover:scale-110 active:scale-95 text-lg uppercase tracking-widest">
+                CLICK FOR A SURPRISE 🎁
+            </button>
+            <p class="cursive text-3xl text-blue-main mt-12 block">Happy Birthday, Hafizha!</p>
+        </div>
+    </div>
 
-            setTimeout(() => {
-                mainCard.classList.remove('shaking');
-                // 2. Animasi sobek (bagian bawah jatuh)
-                bottom.classList.add('is-torn');
-                
-                // 3. Transisi ke halaman baru
-                setTimeout(() => {
-                    mainCard.style.opacity = '0';
-                    setTimeout(() => {
-                        mainCard.style.display = 'none';
-                        newPage.style.display = 'block';
-                        setTimeout(() => {
-                            newPage.style.opacity = '1';
-                        }, 50);
-                    }, 500);
-                }, 600);
-            }, 300);
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
