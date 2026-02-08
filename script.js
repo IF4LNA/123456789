@@ -128,7 +128,7 @@ function initializeMusicPlayer() {
     const musicContent = document.querySelector('.music-content');
     if (!musicContent) return;
 
-    // Inject HTML sesuai desain playlist yang Anda minta
+    // Gunakan template literal untuk mendefinisikan seluruh struktur agar tidak ada yang terhapus
     musicContent.innerHTML = `
         <div class="spotify-container">
             <div class="spotify-header mb-4">
@@ -141,19 +141,22 @@ function initializeMusicPlayer() {
                 </iframe>
             </div>
             <div class="playlist-controls flex flex-wrap justify-center gap-2 mb-6">
-                <button class="playlist-btn active" data-playlist="1">Mix 1</button>
-                <button class="playlist-btn" data-playlist="2">Mix 2</button>
-                <button class="playlist-btn" data-playlist="3">Mix 3</button>
+                <button class="playlist-btn active" data-playlist="1">PlayList 1</button>
+                <button class="playlist-btn" data-playlist="2">PlayList 2</button>
             </div>
-            <div class="music-info text-sm uppercase font-bold tracking-widest text-gray-600">
+            <div class="music-info text-sm uppercase font-bold tracking-widest text-gray-600 mb-6">
                 <div class="current-playlist text-blue-main mb-1">Now Playing: ...</div>
                 <div class="playlist-description italic">Memuat lagu...</div>
             </div>
+            
+            <button onclick="goToTetris()" class="mt-4 bg-black text-white px-8 py-3 font-black uppercase text-xs hover:bg-blue-main transition shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] active:shadow-none active:translate-x-1 active:translate-y-1">
+                Next: Play Game 🎮
+            </button>
         </div>
     `;
 
-    // Pasang listener tombol
-    const playlistBtns = document.querySelectorAll('.playlist-btn');
+    // Pasang kembali event listener untuk tombol playlist
+    const playlistBtns = musicContent.querySelectorAll('.playlist-btn');
     playlistBtns.forEach(btn => {
         btn.addEventListener('click', function() {
             playlistBtns.forEach(b => b.classList.remove('active', 'bg-blue-main', 'text-white'));
@@ -162,7 +165,7 @@ function initializeMusicPlayer() {
         });
     });
 
-    // Load default
+    // Load playlist pertama secara default
     loadSpotifyPlaylist(1);
 }
 
