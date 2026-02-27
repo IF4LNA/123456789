@@ -282,3 +282,4 @@ document.body.addEventListener('click', () => {
        // audio.play(); // Hapus komentar jika ingin lsg putar saat klik pertama
    }
 }, {once: true});
+
