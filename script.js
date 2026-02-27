@@ -11,9 +11,12 @@ let isPlaying = false;
 let playbackInterval = null;
 // 1. DATA FOTO & PLAYLIST DATA
 const myPhotos = [
-    { src: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80', caption: 'Your Beautiful Smile' },
-    { src: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80', caption: 'Special Moments' },
-    { src: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80', caption: 'Forever Happy' }
+    { src: 'assets/foto/1.png', caption: 'Your Beautiful Smile' },
+    { src: 'assets/foto/2.png', caption: 'Special Moments' },
+    { src: 'assets/foto/3.jpg', caption: 'Forever Happy' },
+    { src: 'assets/foto/4.png', caption: 'Sweet Memories' },
+    { src: 'assets/foto/5.png', caption: 'Always Together' },
+    { src: 'assets/foto/6.png', caption: 'Happy Birthday!' }
 ];
 
 const playlistsData = {
@@ -86,9 +89,9 @@ async function renderPolaroids() {
             <div class="polaroid-content"><img src="${p.src}" class="w-full h-full object-cover"></div>
             <p class="cursive text-xl mt-4 text-center text-gray-700">${p.caption}</p>`;
         gallery.appendChild(pol);
-        await new Promise(r => setTimeout(r, 400));
+await new Promise(r => setTimeout(r, 250)); 
         pol.classList.add('printed');
-        await new Promise(r => setTimeout(r, 1000));
+        await new Promise(r => setTimeout(r, 600));
     }
     setTimeout(() => {
         surprise.classList.remove('opacity-0');
@@ -776,12 +779,15 @@ function skipTo(target) {
     }
 }
 
+// Fungsi untuk memunculkan modal pesan cinta (tetap seperti keinginan Anda)
 function confirmGameOver() {
     const gameOverModal = document.getElementById('game-over-modal');
     const finalModal = document.getElementById('final-message-modal');
 
-    // Sembunyikan modal game over
-    gameOverModal.classList.add('opacity-0', 'pointer-events-none');
+    // Sembunyikan modal game over (modal yang ada tulisan CONTINUE)
+    if (gameOverModal) {
+        gameOverModal.classList.add('opacity-0', 'pointer-events-none');
+    }
     
     // Tampilkan modal pesan cinta terakhir (Inget Ya!)
     if (finalModal) {
@@ -790,4 +796,10 @@ function confirmGameOver() {
             finalModal.classList.add('opacity-100');
         }, 10);
     }
+}
+
+// Fungsi baru untuk pindah ke halaman parallax
+function goToParallax() {
+    // Ganti 'parallax.html' dengan nama file HTML parallax Anda
+    window.location.href = 'parallax.html';
 }

@@ -1,0 +1,209 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+body::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+body {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+svg {
+  display: block;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.scrollElement {
+  position: absolute;
+  height: 6000px;
+  width: 100px;
+  top: 0;
+  z-index: 0;
+}
+
+.btn {
+  position: fixed;
+  bottom: 5%;
+  right: 0px;
+  transform: translateX(-50%);
+  border: 1px solid #fff;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  padding: 0.5rem 0.7em;
+  background-color: transparent;
+  color: #ffffff;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  cursor: pointer;
+  transition: all 0.3s;
+  z-index: 11;
+}
+
+.btn_works {
+  left: 100px;
+  right: unset;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background: #ffffff;
+  color: #1b1734;
+}
+
+/* Update style.css milik Parallax */
+
+.scrollElement {
+    position: absolute;
+    height: 8000px; /* Tambah tingginya jika pesan sangat panjang */
+    width: 100%;    /* Pastikan lebar 100% agar teks bisa di-center */
+    top: 0;
+    z-index: 100;   /* Pastikan di atas SVG */
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* Pusatkan secara horizontal */
+    width: 100%;
+    pointer-events: none;   /* Agar tidak mengganggu scroll */
+}
+
+.long-message {
+    pointer-events: auto;   /* Aktifkan kembali interaksi pada kotak teks */
+    max-width: 80% ;        /* Lebar teks di mobile */
+    width: 500px;           /* Lebar teks di desktop */
+    background: rgba(255, 255, 255, 0.85); /* Box semi-transparan */
+    padding: 30px;
+    margin-top: 150vh;      /* Jarak agar animasi pembuka selesai dulu */
+    margin-bottom: 100vh;   /* Jarak di akhir */
+    border: 3px solid #1b2e3c;
+    border-radius: 15px;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace; /* Gaya retro sesuai kartu */
+    line-height: 1.6;
+    color: #1b2e3c;
+    box-shadow: 10px 10px 0px 0px rgba(27, 46, 60, 1); /* Shadow kaku ala desain sebelumnya */
+}
+
+/* Container Switch */
+.toggle-wrapper {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1001; /* Di atas segalanya */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 15px;
+    border-radius: 50px;
+    border: 2px solid #1b2e3c;
+}
+
+.label-text {
+    font-weight: bold;
+    font-size: 12px;
+    color: #1b2e3c;
+    text-transform: uppercase;
+}
+
+/* Logic Transisi Pesan */
+.message-container {
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 1;
+}
+
+.message-hidden {
+    opacity: 0 !important;
+    pointer-events: none;
+    transform: translateY(20px);
+}
+
+/* Styling Switch Slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+}
+
+.switch input { opacity: 0; width: 0; height: 0; }
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px; width: 16px;
+    left: 3px; bottom: 3px;
+    background-color: white;
+    transition: .4s;
+}
+
+input:checked + .slider { background-color: #ec4899; } /* Pink saat on */
+
+input:checked + .slider:before {
+    transform: translateX(18px);
+}
+
+.slider.round { border-radius: 34px; }
+.slider.round:before { border-radius: 50%; }
+
+/* Pastikan class ini ada di style.css */
+/* Pastikan ada di style.css */
+.message-container {
+    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+    opacity: 1;
+    visibility: visible;
+}
+
+.message-hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transform: translateY(30px);
+}
+
+.music-controller {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2000;
+}
+
+.music-btn {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid #1b2e3c;
+    box-shadow: 4px 4px 0px 0px #1b2e3c;
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+}
+
+.music-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: none;
+}
